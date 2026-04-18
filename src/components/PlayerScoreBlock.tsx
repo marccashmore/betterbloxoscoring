@@ -10,13 +10,12 @@ const SNAP_THRESHOLD = 44
 interface Props {
   player: Player
   rounds: Round[]
-  cardsDealt: number
   isCurrent: boolean
   onClick: () => void
   onRename: (playerId: string, name: string) => void
 }
 
-export function PlayerScoreBlock({ player, rounds, cardsDealt, isCurrent, onClick, onRename }: Props) {
+export function PlayerScoreBlock({ player, rounds, isCurrent, onClick, onRename }: Props) {
   const playerRounds = rounds.filter((r) =>
     r.scores.some((s) => s.playerId === player.id)
   )
@@ -103,7 +102,7 @@ export function PlayerScoreBlock({ player, rounds, cardsDealt, isCurrent, onClic
         <div className="score-block__name">{player.name}</div>
         <div className="score-block__score">{totalScore}</div>
         <div className="score-block__progress">
-          {turnsPlayed} of {cardsDealt} cards laid
+          {turnsPlayed} cards laid
         </div>
       </button>
 

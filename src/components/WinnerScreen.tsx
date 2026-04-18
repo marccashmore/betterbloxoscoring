@@ -4,6 +4,7 @@ import './WinnerScreen.css'
 interface Props {
   onNewGame: () => void
   onClearScores: () => void
+  onBack: () => void
 }
 
 function medalFor(position: number): string | null {
@@ -13,7 +14,7 @@ function medalFor(position: number): string | null {
   return null
 }
 
-export function WinnerScreen({ onNewGame, onClearScores }: Props) {
+export function WinnerScreen({ onNewGame, onClearScores, onBack }: Props) {
   const { game } = useGameStore()
   if (!game) return null
 
@@ -72,6 +73,9 @@ export function WinnerScreen({ onNewGame, onClearScores }: Props) {
       )}
 
       <div className="winner-actions">
+        <button className="winner-back-btn" onClick={onBack} aria-label="Back to scores">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true"><path d="M9 1L1 9L9 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </button>
         <button className="winner-new-btn" onClick={onNewGame}>
           New
         </button>

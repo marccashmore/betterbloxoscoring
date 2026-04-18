@@ -9,7 +9,7 @@ function generateId() {
 interface GameStore {
   game: Game | null
   knownNames: string[]
-  startGame: (players: Player[], cardsDealt: number) => void
+  startGame: (players: Player[]) => void
   abandonGame: () => void
   addRound: (round: Round) => void
   advanceTurn: () => void
@@ -26,14 +26,13 @@ export const useGameStore = create<GameStore>()(
       game: null,
       knownNames: [],
 
-      startGame: (players, cardsDealt) =>
+      startGame: (players) =>
         set((state) => ({
           game: {
             id: generateId(),
             players,
             rounds: [],
             currentPlayerIndex: 0,
-            cardsDealt,
             createdAt: Date.now(),
           },
           knownNames: Array.from(

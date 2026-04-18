@@ -107,6 +107,27 @@
   margin-top: auto;
 }
 
+.winner-back-btn {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.winner-back-btn:hover {
+  border-color: var(--text-muted);
+  color: #fff;
+}
+
 .winner-new-btn {
   flex: 1;
   height: 64px;

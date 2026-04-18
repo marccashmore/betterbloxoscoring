@@ -18,6 +18,5 @@ export interface Game {
   players: Player[]
   rounds: Round[]
   currentPlayerIndex: number
-  cardsDealt: number
   createdAt: number
 }
