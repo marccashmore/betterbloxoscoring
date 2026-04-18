@@ -110,8 +110,12 @@
   background: #2a2a2a;
 }
 
+.si-key--minus {
+  color: var(--magenta);
+}
+
 .si-clear {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
   height: 64px;
   border: none;
   border-radius: 32px;

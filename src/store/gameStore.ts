@@ -16,6 +16,8 @@ interface GameStore {
   removeName: (name: string) => void
   renamePlayer: (playerId: string, name: string) => void
   clearScores: () => void
+  deleteRound: (roundId: string) => void
+  updateRoundScore: (roundId: string, playerId: string, score: number) => void
 }
 
 export const useGameStore = create<GameStore>()(
@@ -77,6 +79,32 @@ export const useGameStore = create<GameStore>()(
               ...state.game,
               rounds: [],
               currentPlayerIndex: 0,
+            },
+          }
+        }),
+
+      deleteRound: (roundId) =>
+        set((state) => {
+          if (!state.game) return state
+          return {
+            game: {
+              ...state.game,
+              rounds: state.game.rounds.filter((r) => r.id !== roundId),
+            },
+          }
+        }),
+
+      updateRoundScore: (roundId, playerId, score) =>
+        set((state) => {
+          if (!state.game) return state
+          return {
+            game: {
+              ...state.game,
+              rounds: state.game.rounds.map((r) =>
+                r.id === roundId
+                  ? { ...r, scores: r.scores.map((s) => s.playerId === playerId ? { ...s, score } : s) }
+                  : r
+              ),
             },
           }
         }),

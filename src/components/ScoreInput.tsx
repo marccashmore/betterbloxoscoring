@@ -64,6 +64,7 @@ export function ScoreInput({ player, onDone }: Props) {
             +{n}
           </button>
         ))}
+        <button className="si-key si-key--minus" onClick={() => setScore((s) => s - 4)}>-4</button>
         <button className="si-clear" onClick={() => setScore(0)}>Clear</button>
       </div>
 

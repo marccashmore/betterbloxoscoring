@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useGameStore } from '../store/gameStore'
 import type { Player, Round } from '../types'
 import './PlayerScoreBlock.css'
 
@@ -30,6 +31,9 @@ export function PlayerScoreBlock({ player, rounds, cardsDealt, isCurrent, onClic
   const [editing, setEditing] = useState(false)
   const [editName, setEditName] = useState(player.name)
   const [showScores, setShowScores] = useState(false)
+  const [editingRoundId, setEditingRoundId] = useState<string | null>(null)
+  const [editingValue, setEditingValue] = useState('')
+  const { deleteRound, updateRoundScore } = useGameStore()
   const drag = useRef({ startX: 0, startOffset: 0, active: false, moved: false })
 
   function snapTo(target: number) {
@@ -114,10 +118,42 @@ export function PlayerScoreBlock({ player, rounds, cardsDealt, isCurrent, onClic
                 {playerRounds.map((r, i) => {
                   const s = r.scores.find((s) => s.playerId === player.id)
                   const score = s?.score ?? 0
+                  const isEditing = editingRoundId === r.id
                   return (
                     <div key={r.id} className="scores-dialog__row">
                       <span className="scores-dialog__round">Round {i + 1}</span>
-                      <span className={`scores-dialog__score ${score < 0 ? 'neg' : ''}`}>{score}</span>
+                      {isEditing ? (
+                        <>
+                          <input
+                            className="scores-dialog__input"
+                            type="number"
+                            value={editingValue}
+                            onChange={(e) => setEditingValue(e.target.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                updateRoundScore(r.id, player.id, parseInt(editingValue, 10) || 0)
+                                setEditingRoundId(null)
+                              }
+                              if (e.key === 'Escape') setEditingRoundId(null)
+                            }}
+                            autoFocus
+                          />
+                          <button className="scores-dialog__action save" onClick={() => {
+                            updateRoundScore(r.id, player.id, parseInt(editingValue, 10) || 0)
+                            setEditingRoundId(null)
+                          }}>✓</button>
+                          <button className="scores-dialog__action cancel" onClick={() => setEditingRoundId(null)}>✕</button>
+                        </>
+                      ) : (
+                        <>
+                          <span className={`scores-dialog__score ${score < 0 ? 'neg' : ''}`}>{score}</span>
+                          <button className="scores-dialog__action edit" onClick={() => {
+                            setEditingRoundId(r.id)
+                            setEditingValue(String(score))
+                          }}>✏</button>
+                          <button className="scores-dialog__action delete" onClick={() => deleteRound(r.id)}>🗑</button>
+                        </>
+                      )}
                     </div>
                   )
                 })}

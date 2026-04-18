@@ -161,8 +161,8 @@
 
 .scores-dialog__row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--border);
 }
@@ -170,16 +170,73 @@
 .scores-dialog__round {
   font-size: 0.9rem;
   color: var(--text-muted);
+  flex: 1;
 }
 
 .scores-dialog__score {
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
+  min-width: 2.5ch;
+  text-align: right;
 }
 
 .scores-dialog__score.neg {
   color: var(--magenta);
+}
+
+.scores-dialog__input {
+  width: 70px;
+  height: 32px;
+  padding: 0 0.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+  background: #000;
+  border: 1px solid var(--yellow);
+  border-radius: 16px;
+  color: #fff;
+  font-family: inherit;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.scores-dialog__input::-webkit-outer-spin-button,
+.scores-dialog__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.scores-dialog__action {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.scores-dialog__action.edit {
+  background: #2a2a2a;
+  color: var(--blue);
+}
+
+.scores-dialog__action.delete {
+  background: #2a2a2a;
+  color: var(--magenta);
+}
+
+.scores-dialog__action.save {
+  background: var(--green);
+  color: #fff;
+}
+
+.scores-dialog__action.cancel {
+  background: #2a2a2a;
+  color: var(--text-muted);
 }
 
 .scores-dialog__total {
