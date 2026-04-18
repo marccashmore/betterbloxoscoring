@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npx --yes create-vite@latest . --template react-ts)",
+      "Bash(npx create-vite@latest . --template react-ts)",
+      "Read(//c/Users/marc_/OneDrive/Code/**)",
+      "Bash(npx create-vite@latest bloxo-temp --template react-ts)",
+      "Bash(mv \"c:/Users/marc_/OneDrive/Code/bloxo-temp/\"* \"c:/Users/marc_/OneDrive/Code/Better Bloxo Scoring/\")",
+      "Bash(mv \"c:/Users/marc_/OneDrive/Code/bloxo-temp/\".* \"c:/Users/marc_/OneDrive/Code/Better Bloxo Scoring/\")",
+      "Bash(rmdir \"c:/Users/marc_/OneDrive/Code/bloxo-temp\")",
+      "Bash(npm install *)",
+      "Bash(npm info *)",
+      "Bash(node -e \"const v=JSON.parse\\(require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\)\\); console.log\\(v.slice\\(-5\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(npx tsc *)",
+      "WebFetch(domain:www.bloxo.co.uk)"
+    ]
+  }
+}

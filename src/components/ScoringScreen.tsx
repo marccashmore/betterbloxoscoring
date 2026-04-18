@@ -1,0 +1,77 @@
+import { useState } from 'react'
+import { useGameStore } from '../store/gameStore'
+import { PlayerScoreBlock } from './PlayerScoreBlock'
+import './ScoringScreen.css'
+
+interface Props {
+  onPlayerTap: (playerId: string) => void
+  onNewGame: () => void
+}
+
+export function ScoringScreen({ onPlayerTap, onNewGame }: Props) {
+  const { game, renamePlayer, clearScores } = useGameStore()
+  const [showClearConfirm, setShowClearConfirm] = useState(false)
+
+  if (!game) return null
+
+  const { players, rounds, currentPlayerIndex, cardsDealt } = game
+
+  function handleClearConfirm() {
+    clearScores()
+    setShowClearConfirm(false)
+  }
+
+  return (
+    <div className="scoring-screen">
+      <header className="scoring-header">
+        <h1 className="scoring-title">
+          <span className="b">B</span>
+          <span className="l">L</span>
+          <span className="o1">O</span>
+          <span className="x">X</span>
+          <span className="o2">O</span>
+        </h1>
+        <div className="scoring-actions">
+          <button className="clear-btn" onClick={() => setShowClearConfirm(true)}>
+            Clear
+          </button>
+          <button className="new-game-btn" onClick={onNewGame}>
+            New
+          </button>
+        </div>
+      </header>
+
+      <div className="player-blocks">
+        {players.map((player, index) => (
+          <PlayerScoreBlock
+            key={player.id}
+            player={player}
+            rounds={rounds}
+            cardsDealt={cardsDealt}
+            isCurrent={index === currentPlayerIndex}
+            onClick={() => onPlayerTap(player.id)}
+            onRename={renamePlayer}
+          />
+        ))}
+      </div>
+
+      {showClearConfirm && (
+        <div className="confirm-overlay" onClick={() => setShowClearConfirm(false)}>
+          <div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
+            <p>This will clear all scores and reset the game back to round 1. Players will stay the same.</p>
+            <div className="confirm-actions">
+              <button className="confirm-cancel" onClick={() => setShowClearConfirm(false)} aria-label="Cancel">
+                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true">
+                  <path d="M9 1L1 9L9 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button className="confirm-proceed" onClick={handleClearConfirm}>
+                Clear Scores
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

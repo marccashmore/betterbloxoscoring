@@ -1,0 +1,284 @@
+.swipeable-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  margin-bottom: 0.5rem;
+}
+
+/* Scores panel — revealed by swiping right */
+.scores-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 88px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scores-panel__btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+/* Edit panel — revealed by swiping left */
+.edit-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 88px;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-panel__btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+/* The card */
+.score-block {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 36px;
+  height: 64px;
+  padding: 0 1.25rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+  gap: 1rem;
+  touch-action: pan-y;
+}
+
+.score-block:active {
+  opacity: 0.85;
+}
+
+.score-block--current {
+  border-color: var(--yellow);
+  background: #1f1f00;
+}
+
+.score-block__name {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 600;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.score-block__score {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  min-width: 3ch;
+  text-align: right;
+  color: #fff;
+}
+
+.score-block--current .score-block__score {
+  color: var(--yellow);
+}
+
+.score-block__progress {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* Scores modal */
+.scores-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.scores-dialog {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 320px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.scores-dialog__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #fff;
+}
+
+.scores-dialog__empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.scores-dialog__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  margin-bottom: 1.25rem;
+}
+
+.scores-dialog__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.scores-dialog__round {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.scores-dialog__score {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.scores-dialog__score.neg {
+  color: var(--magenta);
+}
+
+.scores-dialog__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--yellow);
+}
+
+.scores-dialog__close {
+  width: 100%;
+  height: 64px;
+  border: none;
+  border-radius: 32px;
+  background: var(--green);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Edit modal */
+.edit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.edit-dialog {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 320px;
+  width: 100%;
+}
+
+.edit-dialog__label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.edit-input {
+  width: 100%;
+  height: 64px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  color: #fff;
+  outline: none;
+  font-family: inherit;
+  margin-bottom: 0.75rem;
+}
+
+.edit-input:focus {
+  border-color: var(--yellow);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.edit-cancel {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #2a2a2a;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-save {
+  flex: 1;
+  height: 64px;
+  border: none;
+  border-radius: 32px;
+  background: var(--green);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}

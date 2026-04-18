@@ -1,0 +1,132 @@
+.scoring-screen {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+
+.scoring-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.scoring-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.scoring-title .b  { color: var(--green); }
+.scoring-title .l  { color: var(--yellow); }
+.scoring-title .o1 { color: #ffffff; }
+.scoring-title .x  { color: var(--blue); }
+.scoring-title .o2 { color: var(--magenta); }
+
+.scoring-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.clear-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  height: 64px;
+  padding: 0 1.25rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.clear-btn:hover {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+.new-game-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  height: 64px;
+  padding: 0 1.25rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.new-game-btn:hover {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+.player-blocks {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.confirm-dialog {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 320px;
+  width: 100%;
+}
+
+.confirm-dialog p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ccc;
+  margin-bottom: 1.25rem;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.confirm-cancel {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #2a2a2a;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-proceed {
+  flex: 1;
+  height: 64px;
+  border: none;
+  border-radius: 32px;
+  background: var(--magenta);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
