@@ -62,15 +62,15 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background: var(--card);
-  border: 2px solid var(--border);
+  background: #fff;
+  border: 1px solid #e0e0e0;
   border-radius: 36px;
   height: 64px;
   padding: 0 1.25rem;
   cursor: pointer;
   text-align: left;
   font-family: inherit;
-  color: var(--text);
+  color: #111;
   gap: 1rem;
   touch-action: pan-y;
 }
@@ -80,8 +80,21 @@
 }
 
 .score-block--current {
-  border-color: var(--yellow);
-  background: #1f1f00;
+  border: 2px solid var(--yellow);
+  background: #fffbea;
+}
+
+.score-block__avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  margin-left: -5px;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .score-block__name {
@@ -92,6 +105,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #111;
 }
 
 .score-block__score {
@@ -100,16 +114,16 @@
   line-height: 1;
   min-width: 3ch;
   text-align: right;
-  color: #fff;
+  color: #111;
 }
 
 .score-block--current .score-block__score {
-  color: var(--yellow);
+  color: #b89000;
 }
 
 .score-block__progress {
   font-size: 0.78rem;
-  color: var(--text-muted);
+  color: #888;
   white-space: nowrap;
   min-width: 0;
 }

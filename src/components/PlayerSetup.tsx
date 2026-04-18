@@ -16,6 +16,7 @@ import {
 import { useGameStore } from '../store/gameStore'
 import { SortablePlayerRow } from './SortablePlayerRow'
 import type { Player } from '../types'
+import { colorAt, nextColor } from '../lib/playerColors'
 import './PlayerSetup.css'
 
 function generateId() {
@@ -36,8 +37,8 @@ export function PlayerSetup({ onContinue, onReturnToGame }: Props) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(TouchSensor)
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } })
   )
 
   const suggestions = knownNames.filter(
@@ -49,7 +50,7 @@ export function PlayerSetup({ onContinue, onReturnToGame }: Props) {
   function addPlayer(name: string) {
     const trimmed = name.trim()
     if (!trimmed || players.find((p) => p.name === trimmed)) return
-    setPlayers((prev) => [...prev, { id: generateId(), name: trimmed }])
+    setPlayers((prev) => [...prev, { id: generateId(), name: trimmed, color: colorAt(prev.length) }])
     setInputValue('')
     setShowSuggestions(false)
     inputRef.current?.focus()
@@ -57,6 +58,12 @@ export function PlayerSetup({ onContinue, onReturnToGame }: Props) {
 
   function removePlayer(id: string) {
     setPlayers((prev) => prev.filter((p) => p.id !== id))
+  }
+
+  function changePlayerColor(id: string) {
+    setPlayers((prev) =>
+      prev.map((p) => p.id === id ? { ...p, color: nextColor(p.color ?? colorAt(0)) } : p)
+    )
   }
 
   function handleDragEnd(event: DragEndEvent) {
@@ -154,6 +161,7 @@ export function PlayerSetup({ onContinue, onReturnToGame }: Props) {
                   key={player.id}
                   player={player}
                   onRemove={removePlayer}
+                  onColorChange={changePlayerColor}
                 />
               ))}
             </SortableContext>

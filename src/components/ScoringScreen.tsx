@@ -48,6 +48,7 @@ export function ScoringScreen({ onPlayerTap, onNewGame, onGameFinished }: Props)
           <PlayerScoreBlock
             key={player.id}
             player={player}
+            playerIndex={index}
             rounds={rounds}
             isCurrent={index === currentPlayerIndex}
             onClick={() => onPlayerTap(player.id)}

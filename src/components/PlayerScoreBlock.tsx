@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useGameStore } from '../store/gameStore'
 import type { Player, Round } from '../types'
+import { colorAt, textColorFor } from '../lib/playerColors'
 import './PlayerScoreBlock.css'
 
 const EDIT_WIDTH = 88
@@ -9,13 +10,14 @@ const SNAP_THRESHOLD = 44
 
 interface Props {
   player: Player
+  playerIndex: number
   rounds: Round[]
   isCurrent: boolean
   onClick: () => void
   onRename: (playerId: string, name: string) => void
 }
 
-export function PlayerScoreBlock({ player, rounds, isCurrent, onClick, onRename }: Props) {
+export function PlayerScoreBlock({ player, playerIndex, rounds, isCurrent, onClick, onRename }: Props) {
   const playerRounds = rounds.filter((r) =>
     r.scores.some((s) => s.playerId === player.id)
   )
@@ -24,6 +26,7 @@ export function PlayerScoreBlock({ player, rounds, isCurrent, onClick, onRename 
     return sum + (s?.score ?? 0)
   }, 0)
   const turnsPlayed = playerRounds.length
+  const avatarBg = player.color ?? colorAt(playerIndex)
 
   const [offset, setOffset] = useState(0)
   const [snapping, setSnapping] = useState(false)
@@ -99,6 +102,13 @@ export function PlayerScoreBlock({ player, rounds, isCurrent, onClick, onRename 
         onPointerUp={onPointerUp}
         onClick={handleClick}
       >
+        <div
+          className="score-block__avatar"
+          style={{ background: avatarBg, color: textColorFor(avatarBg) }}
+          aria-hidden="true"
+        >
+          {player.name.charAt(0).toUpperCase()}
+        </div>
         <div className="score-block__name">{player.name}</div>
         <div className="score-block__score">{totalScore}</div>
         <div className="score-block__progress">
