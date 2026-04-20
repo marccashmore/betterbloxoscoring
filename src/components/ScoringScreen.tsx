@@ -41,7 +41,10 @@ export function ScoringScreen({ onPlayerTap, onNewGame, onGameFinished }: Props)
             New
           </button>
         </div>
+        
       </header>
+
+      <h2 className="scoring-subtitle">Select a player to add a score</h2>
 
       <div className="player-blocks scoring-scrollable">
         {players.map((player, index) => (

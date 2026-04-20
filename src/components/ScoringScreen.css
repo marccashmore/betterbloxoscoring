@@ -20,6 +20,15 @@
   letter-spacing: 0.08em;
 }
 
+.scoring-subtitle {
+  font-size: 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
 .scoring-title .b  { color: var(--green); }
 .scoring-title .l  { color: var(--yellow); }
 .scoring-title .o1 { color: #ffffff; }
